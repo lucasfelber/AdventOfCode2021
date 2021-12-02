@@ -4,7 +4,7 @@ import util.getInputAsIntArray
 import util.getInputAsText
 import java.lang.reflect.Proxy
 
-fun level1(): Int {
+private fun level1(): Int {
     val input = getInputAsIntArray(1)
 
     var output = 0;
@@ -18,7 +18,7 @@ fun level1(): Int {
     return output
 }
 
-fun level2(): Int {
+private fun level2(): Int {
     val input = getInputAsIntArray(1)
 
     var preparedInput = mutableListOf<Int>()

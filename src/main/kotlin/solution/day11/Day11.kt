@@ -1,11 +1,11 @@
-package solution
+package solution.day11
 
-import util.getInputAsStringArray
+import util.Solution
 
 var globalCount = 0
 
-private fun level1(): Int {
-    var input = getInputAsStringArray(11).mapIndexed { outerIndex, line -> line.mapIndexed { innerIndex, it -> Octopus(innerIndex, outerIndex, it.toString().toInt(), false) } }
+fun solve1(): Any? {
+    var input = Solution.getInputAsStringArray().mapIndexed { outerIndex, line -> line.mapIndexed { innerIndex, it -> Octopus(innerIndex, outerIndex, it.toString().toInt(), false) } }
 
     for(count in 1..500){
         val toBeFlashed = arrayListOf<Octopus>()
@@ -31,17 +31,8 @@ private fun level1(): Int {
         if(toBeFlashed.size > 0) {
             input = flashOctopus(input, toBeFlashed, 0)
         }
-
-        for(i in input){
-            for(j in i){
-                print(j.value.toString() + " ")
-            }
-            println()
-        }
-        println()
     }
-    println(globalCount)
-    return 0
+    return globalCount
 }
 
 fun flashOctopus(input: List<List<Octopus>>, origins: ArrayList<Octopus>, depth: Int): List<List<Octopus>>{
@@ -110,5 +101,6 @@ fun getNeighbors(input: List<List<Octopus>>, origin: Octopus): ArrayList<Octopus
 data class Octopus(var x: Int, var y: Int, var value: Int, var flashed: Boolean)
 
 fun main(){
-    level1()
+    Solution.run(11, ::solve1)
+    Solution.run(11, ::solve1)
 }

@@ -1,9 +1,9 @@
-package solution
+package solution.day14
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(14)
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray()
     var template = input.take(1).joinToString()
     val insertionRules = input.drop(2).map { it.split(" -> ").let { (a,b) -> a to b } }
 
@@ -16,8 +16,8 @@ private fun level1(): Int{
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-private fun level2(): Long{
-    val input = getInputAsStringArray(14)
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray()
 
     val template = input.first().windowed(2).groupingBy { it }.eachCount().mapValues { it.value.toLong() }
     val insertionRules = input.drop(2).groupBy({ it.substringBefore(" -> ") }, {it.substringAfter(" -> ")}).mapValues { it.value.single() }
@@ -44,6 +44,6 @@ private fun level2(): Long{
 }
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(14, ::solve1)
+    Solution.run(14, ::solve2)
 }

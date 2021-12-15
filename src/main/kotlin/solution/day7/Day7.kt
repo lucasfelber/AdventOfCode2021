@@ -1,10 +1,10 @@
-package solution
+package solution.day7
 
-import util.getInputAsText
+import util.Solution
 import kotlin.math.abs
 
-private fun level1(): Int{
-    val input = getInputAsText(7).split(",").map { it.toInt() }.toIntArray()
+fun solve1(): Any? {
+    val input = Solution.getInputAsText().split(",").map { it.toInt() }.toIntArray()
     var output = Int.MAX_VALUE
     for(i in input){
         var temp = 0
@@ -18,8 +18,8 @@ private fun level1(): Int{
     return output
 }
 
-private fun level2(): Int{
-    val input = getInputAsText(7).split(",").map { it.toInt() }.toIntArray()
+fun solve2(): Any? {
+    val input = Solution.getInputAsText().split(",").map { it.toInt() }.toIntArray()
     var output = Int.MAX_VALUE
     for(i in 0 until input.maxOrNull()!!){
         var temp = 0
@@ -42,6 +42,6 @@ fun calcCost(input: Int): Int{
 }
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(7, ::solve1)
+    Solution.run(7, ::solve2)
 }

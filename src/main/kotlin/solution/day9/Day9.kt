@@ -1,9 +1,9 @@
-package solution
+package solution.day9
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    var input = getInputAsStringArray(9).map { it.chunked(1).map { it.toInt() } }
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.chunked(1).map { it.toInt() } }
     var output = 0
     for(i in input.indices){
         for(j in input[i].indices){
@@ -52,12 +52,9 @@ fun checkIfLower(input: List<List<Int>>, i: Int, j: Int): Boolean{
     return false
 }
 
-private fun level2(): Int{
-    var input = getInputAsStringArray(9).mapIndexed { indexOuter, line -> line.chunked(1).mapIndexed { indexInner, it -> Location(indexInner, indexOuter, it.toInt(), false) } }
-//    for(i in input){
-//        println(i)
-//    }
-    var lowestLocations = arrayListOf<Location>()
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray().mapIndexed { indexOuter, line -> line.chunked(1).mapIndexed { indexInner, it -> Location(indexInner, indexOuter, it.toInt(), false) } }
+    val lowestLocations = arrayListOf<Location>()
 
     for(i in input){
         for(j in i){
@@ -71,9 +68,9 @@ private fun level2(): Int{
         input[i.y][i.x].visited = true
     }
 
-    var basinSizes = arrayListOf<Int>()
+    val basinSizes = arrayListOf<Int>()
     for(i in lowestLocations){
-        var startingLocation = arrayListOf(i)
+        val startingLocation = arrayListOf(i)
         basinSizes.add(getBasinSize(input, startingLocation, 0).size)
     }
 
@@ -90,23 +87,22 @@ fun checkIfLowestNeighbor(origin: Location, arr: ArrayList<Location>): Boolean{
 }
 
 fun getBasinSize(input: List<List<Location>>, visitedLocations: ArrayList<Location>, depth: Int): ArrayList<Location>{
-    var newVisitedLocations = ArrayList<Location>(visitedLocations)
+    val newVisitedLocations = ArrayList<Location>(visitedLocations)
     for(i in visitedLocations){
         for(j in getNeighbors(input, i)){
             newVisitedLocations.add(j)
             input[j.y][j.x].visited = true
         }
     }
-    if(newVisitedLocations.size == visitedLocations.size){
-        return visitedLocations
+    return if(newVisitedLocations.size == visitedLocations.size){
+        visitedLocations
     }else{
-        return getBasinSize(input, newVisitedLocations, depth + 1)
+        getBasinSize(input, newVisitedLocations, depth + 1)
     }
 }
 
 fun getNeighbors(input: List<List<Location>>, origin: Location): ArrayList<Location>{
-    var arr = arrayListOf<Location>()
-    var count = 0
+    val arr = arrayListOf<Location>()
     try {
         if(input[origin.y - 1][origin.x].value < 9 && !input[origin.y - 1][origin.x].visited) {
             arr.add(input[origin.y - 1][origin.x])
@@ -137,6 +133,6 @@ fun getNeighbors(input: List<List<Location>>, origin: Location): ArrayList<Locat
 data class Location(var x: Int, var y: Int, var value: Int, var visited: Boolean)
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(9, ::solve1)
+    Solution.run(9, ::solve2)
 }

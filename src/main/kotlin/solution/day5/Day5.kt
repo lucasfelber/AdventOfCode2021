@@ -1,9 +1,9 @@
-package solution
+package solution.day5
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(5).map { it.split(" -> ").map { it.split(",") }.map{ Point(it[0].toInt(), it[1].toInt(),0) } }
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.split(" -> ").map { it.split(",") }.map{ Point(it[0].toInt(), it[1].toInt(),0) } }
     val diagram = Array(getBiggestXValue(input) + 1){ IntArray(getBiggestYValue(input) + 1) }
 
     for(i in input){
@@ -11,16 +11,6 @@ private fun level1(): Int{
         for(point in points){
             diagram[point.y][point.x] ++
         }
-    }
-    for(i in diagram){
-        for(j in i){
-            if(j == 0){
-                print(".")
-            }else{
-                print(j)
-            }
-        }
-        println()
     }
     var counter = 0
     for(i in diagram){
@@ -102,5 +92,6 @@ fun getBiggestYValue(points: List<List<Point>>): Int{
 }
 
 fun main(){
-    println(level1())
+    Solution.run(5, ::solve2)
+    Solution.run(5, ::solve2)
 }

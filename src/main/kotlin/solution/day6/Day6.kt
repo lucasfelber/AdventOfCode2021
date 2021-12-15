@@ -1,9 +1,9 @@
-package solution
+package solution.day6
 
-import util.getInputAsText
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsText(6).split(",").map { it.toInt() }.toMutableList()
+fun solve1(): Any? {
+    val input = Solution.getInputAsText().split(",").map { it.toInt() }.toMutableList()
 
     repeat(80){
         for(i in input.indices){
@@ -18,8 +18,8 @@ private fun level1(): Int{
     return input.size
 }
 
-private fun level2(): Long{
-    val input = getInputAsText(6).split(",").map { it.toInt() }
+fun solve2(): Any? {
+    val input = Solution.getInputAsText().split(",").map { it.toInt() }
     val map = input.groupingBy { it }.eachCount().mapValues { it.value.toLong() }.toMutableMap().withDefault { 0L }.apply {
         for (i in 0 until 256) {
             val zeroes = getValue(i)
@@ -33,6 +33,6 @@ private fun level2(): Long{
 }
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(6, ::solve1)
+    Solution.run(6, ::solve2)
 }

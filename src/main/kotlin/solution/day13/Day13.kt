@@ -1,9 +1,9 @@
-package solution
+package solution.day13
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(13).partition { !it.contains("fold")}
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray().partition { !it.contains("fold")}
     var positions = input.first.dropLast(1).map { it.split(',').let { (a,b) -> Position(a.toInt(), b.toInt()) } }
     val instructions = input.second.map { it.split("along ").drop(1).joinToString().split('=') }
 
@@ -38,5 +38,5 @@ private fun level1(): Int{
 data class Position(var x: Int, var y: Int)
 
 fun main(){
-    println(level1())
+    Solution.run(13, ::solve1)
 }

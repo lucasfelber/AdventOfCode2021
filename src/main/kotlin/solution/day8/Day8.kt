@@ -1,9 +1,9 @@
-package solution
+package solution.day8
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(8).map { it.split(" | ").drop(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ").filter { it.length == 2 || it.length == 3 || it.length == 4 || it.length == 7 }}
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.split(" | ").drop(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ").filter { it.length == 2 || it.length == 3 || it.length == 4 || it.length == 7 }}
     var output = 0
     for(i in input){
         output += i.count()
@@ -11,9 +11,9 @@ private fun level1(): Int{
     return output
 }
 
-private fun level2(): Int{
-    val input = getInputAsStringArray(8).map { it.split(" | ").dropLast(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ")}
-    val outputNumbers = getInputAsStringArray(8).map { it.split(" | ").drop(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ")}
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.split(" | ").dropLast(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ")}
+    val outputNumbers = Solution.getInputAsStringArray().map { it.split(" | ").drop(1).toString().replace("[", "").replace("]", "") }.map { it.split(" ")}
 
     var output = 0
     for(i in input.indices){
@@ -154,6 +154,6 @@ fun getNumberSequence(input: List<String>, digit: String): Int{
 }
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(8, ::solve1)
+    Solution.run(8, ::solve2)
 }

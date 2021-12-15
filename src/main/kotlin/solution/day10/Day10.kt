@@ -1,10 +1,10 @@
-package solution
+package solution.day10
 
-import util.getInputAsStringArray
+import util.Solution
 import java.math.BigInteger
 
-private fun level1(): BigInteger{
-    var input = getInputAsStringArray(10).toMutableList()
+fun solve2(): Any? {
+    var input = Solution.getInputAsStringArray().toMutableList()
     val openChunks: MutableList<Chunk> = mutableListOf()
     var illegalBrackets = ""
 
@@ -91,5 +91,6 @@ fun matchingType(type1: Char, type2: Char): Boolean{
 data class Chunk(var type: Char)
 
 fun main(){
-    println(level1())
+    Solution.run(10, ::solve2)
+    Solution.run(10, ::solve2)
 }

@@ -1,11 +1,9 @@
-package solution
+package solution.day1
 
-import util.getInputAsIntArray
-import util.getInputAsText
-import java.lang.reflect.Proxy
+import util.Solution
 
-private fun level1(): Int {
-    val input = getInputAsIntArray(1)
+fun solve1(): Any? {
+    val input = Solution.getInputAsIntArray()
 
     var output = 0;
 
@@ -18,10 +16,10 @@ private fun level1(): Int {
     return output
 }
 
-private fun level2(): Int {
-    val input = getInputAsIntArray(1)
+fun solve2(): Any? {
+    val input = Solution.getInputAsIntArray()
 
-    var preparedInput = mutableListOf<Int>()
+    val preparedInput = mutableListOf<Int>()
 
     var output = 0
 
@@ -39,6 +37,6 @@ private fun level2(): Int {
 }
 
 fun main() {
-    println(level1())
-    println(level2())
+    Solution.run(1, ::solve1)
+    Solution.run(1, ::solve2)
 }

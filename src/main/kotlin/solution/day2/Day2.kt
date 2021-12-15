@@ -1,12 +1,9 @@
-package solution
+package solution.day2
 
-import util.getInputAsIntArray
-import util.getInputAsStringArray
-import util.getInputAsText
-import java.lang.reflect.Proxy
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(2)
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray()
     var distance = 0
     var depth = 0
 
@@ -22,8 +19,8 @@ private fun level1(): Int{
     return distance * depth
 }
 
-private fun level2(): Int{
-    val input = getInputAsStringArray(2)
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray()
     var aim = 0
     var distance = 0
     var depth = 0
@@ -44,6 +41,6 @@ private fun level2(): Int{
 }
 
 fun main(){
-    println(level1())
-    println(level2())
+    Solution.run(2, ::solve1)
+    Solution.run(2, ::solve2)
 }

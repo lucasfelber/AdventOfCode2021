@@ -1,9 +1,9 @@
-package solution
+package solution.day4
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int {
-    var input = getInputAsStringArray(4).toMutableList()
+fun solve1(): Any? {
+    var input = Solution.getInputAsStringArray().toMutableList()
     val numbersDrawn = input[0].split(",").map{it.toInt()}
     input.removeAt(0)
     input.removeAt(0)
@@ -30,8 +30,8 @@ private fun level1(): Int {
     return 0
 }
 
-private fun level2(): Int {
-    var input = getInputAsStringArray(4).toMutableList()
+fun solve2(): Any? {
+    var input = Solution.getInputAsStringArray().toMutableList()
     val numbersDrawn = input[0].split(",").map { it.toInt() }
     input.removeAt(0)
     input.removeAt(0)
@@ -125,6 +125,6 @@ fun checkVertical(lines: List<List<BoardItem>>): Boolean{
 }
 
 fun main(){
-    //println(level1())
-    println(level2())
+    Solution.run(4, ::solve1)
+    Solution.run(4, ::solve2)
 }

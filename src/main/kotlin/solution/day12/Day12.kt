@@ -1,19 +1,19 @@
-package solution
+package solution.day12
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(12).map { it.split('-').let { (a,b) -> Cave(a) to Cave(b) } }
-
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.split('-').let { (a,b) -> Cave(a) to Cave(b) } }
     val graph = CaveGraph(input)
     graph.recurse(Cave("start"), Cave("end"), emptyMap(), emptyList(), false)
-    println(graph.paths.size)
+    return graph.paths.size
+}
 
-    graph.paths = mutableListOf()
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray().map { it.split('-').let { (a,b) -> Cave(a) to Cave(b) } }
+    val graph = CaveGraph(input)
     graph.recurse(Cave("start"), Cave("end"), emptyMap(), emptyList(), true)
-    println(graph.paths.size)
-
-    return 0
+    return graph.paths.size
 }
 
 class CaveGraph(private val caveList: List<Pair<Cave, Cave>>) {
@@ -74,5 +74,6 @@ class CaveGraph(private val caveList: List<Pair<Cave, Cave>>) {
 data class Cave(val id: String, val big: Boolean = id.uppercase() == id)
 
 fun main(){
-    level1()
+    Solution.run(12, ::solve1)
+    Solution.run(12, ::solve2)
 }

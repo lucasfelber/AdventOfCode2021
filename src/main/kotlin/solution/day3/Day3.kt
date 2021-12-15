@@ -1,9 +1,9 @@
-package solution
+package solution.day3
 
-import util.getInputAsStringArray
+import util.Solution
 
-private fun level1(): Int{
-    val input = getInputAsStringArray(3)
+fun solve1(): Any? {
+    val input = Solution.getInputAsStringArray()
     val preppedInput = arrayListOf<List<Int>>()
 
     for(i in input.indices){
@@ -11,7 +11,7 @@ private fun level1(): Int{
         preppedInput.add(result)
     }
 
-    var output = IntArray(preppedInput[0].size)
+    val output = IntArray(preppedInput[0].size)
 
     for(i in preppedInput){
         for(j in 0 until preppedInput[0].size){
@@ -54,9 +54,9 @@ fun calcEpsilon(Sums: IntArray, InputSize: Int): Int {
     return Integer.parseInt(binaryString, 2)
 }
 
-private fun level2(): Int{
-    val input = getInputAsStringArray(3)
-    var preppedInput = arrayListOf<List<Int>>()
+fun solve2(): Any? {
+    val input = Solution.getInputAsStringArray()
+    val preppedInput = arrayListOf<List<Int>>()
 
     for(i in input.indices){
         val result = input[i].chunked(1).map {it.toInt()}
@@ -76,7 +76,7 @@ private fun level2(): Int{
 
     for(i in co2Scrubber[0].indices){
         if(co2Scrubber.size == 1){
-            break;
+            break
         }
         co2Scrubber = removeUnwantedItem(co2Scrubber, getLeastCommonBit(co2Scrubber, i), i)
     }
@@ -136,6 +136,6 @@ fun getLeastCommonBit(preppedInput: ArrayList<List<Int>>, index: Int): Int{
 }
 
 fun main(){
-    print(level1())
-    println(level2())
+    Solution.run(3, ::solve1)
+    Solution.run(3, ::solve2)
 }
